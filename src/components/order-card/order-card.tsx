@@ -1,9 +1,15 @@
-import { FC, memo, useMemo } from 'react';
+import { FC, memo, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { OrderCardProps } from './type';
 import { TIngredient } from '@utils-types';
 import { OrderCardUI } from '../ui/order-card';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getIngredients,
+  selectIngredients
+} from '../../slices/ingredientsSlice';
+import { AppDispatch } from '../../services/store';
 
 const maxIngredients = 6;
 
@@ -11,7 +17,14 @@ export const OrderCard: FC<OrderCardProps> = memo(({ order }) => {
   const location = useLocation();
 
   /** TODO: взять переменную из стора */
-  const ingredients: TIngredient[] = [];
+  //const ingredients: TIngredient[] = [];
+
+  const dispatch = useDispatch<AppDispatch>();
+  const ingredients = useSelector(selectIngredients);
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
 
   const orderInfo = useMemo(() => {
     if (!ingredients.length) return null;
