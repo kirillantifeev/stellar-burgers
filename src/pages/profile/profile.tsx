@@ -1,14 +1,19 @@
 import { ProfileUI } from '@ui-pages';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from 'src/services/store';
+import {
+  AppDispatch,
+  AppState,
+  RootState,
+  useDispatch,
+  useSelector
+} from '../../services/store';
 import { fetchUser, updateUser } from '../../slices/authSlice';
 import { Preloader } from '../../components/ui';
 
 export const Profile: FC = () => {
   /** TODO: взять переменную из стора */
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   const { isLoading, error, user, isLoggedIn } = useSelector(
     (state: RootState) => state.auth
   );

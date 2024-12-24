@@ -1,8 +1,13 @@
 import { FC, memo } from 'react';
 import { BurgerConstructorElementUI } from '@ui';
 import { BurgerConstructorElementProps } from './type';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, AppState, RootState } from 'src/services/store';
+import {
+  AppDispatch,
+  AppState,
+  RootState,
+  useDispatch,
+  useSelector
+} from '../../services/store';
 import { current } from '@reduxjs/toolkit';
 import {
   ingredientMoveDown,
@@ -12,11 +17,11 @@ import {
 
 export const BurgerConstructorElement: FC<BurgerConstructorElementProps> = memo(
   ({ ingredient, index, totalItems }) => {
-    const constructorItems: any = useSelector<AppState>(
+    const constructorItems: any = useSelector(
       (state: RootState) => state.burgerConstructor
     );
 
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useDispatch();
 
     const handleMoveDown = () => {
       dispatch(ingredientMoveDown(index));

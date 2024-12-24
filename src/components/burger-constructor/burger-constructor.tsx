@@ -1,8 +1,12 @@
 import { FC, useEffect, useMemo, useState } from 'react';
 import { TConstructorIngredient, TIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, AppState } from 'src/services/store';
+import {
+  AppDispatch,
+  AppState,
+  useDispatch,
+  useSelector
+} from '../../services/store';
 import { RootState } from '../../services/rootReducer';
 import { useNavigate } from 'react-router-dom';
 import { makeOrder } from '../../slices/orderSlice';
@@ -10,8 +14,8 @@ import { clearIngredients } from '../../slices/burgerConstructorSlice';
 //import { <BurgerConstructorSlice></BurgerConstructorSlice> } from '../../slices/burgerConstructorSlice';
 
 export const BurgerConstructor: FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const constructorItems: any = useSelector<AppState>(
+  const dispatch = useDispatch();
+  const constructorItems: any = useSelector(
     (state: RootState) => state.burgerConstructor
   );
 

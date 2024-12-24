@@ -9,8 +9,6 @@ import { BurgerConstructorUIProps } from './type';
 import { TConstructorIngredient } from '@utils-types';
 import { BurgerConstructorElement, Modal } from '@components';
 import { Preloader, OrderDetailsUI } from '@ui';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../services/store';
 import { useNavigate } from 'react-router-dom';
 
 export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({

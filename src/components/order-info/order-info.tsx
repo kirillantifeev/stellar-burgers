@@ -3,9 +3,13 @@ import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  AppDispatch,
+  AppState,
+  useDispatch,
+  useSelector
+} from '../../services/store';
 import { getFeeds, selectFeeds } from '../../slices/feedSlice';
-import { AppDispatch } from '../../services/store';
 import {
   getIngredients,
   selectIngredients
@@ -24,7 +28,7 @@ export const OrderInfo: FC = () => {
   const orders = useSelector(selectFeeds);
   const ingredients = useSelector(selectIngredients);
   const order = useSelector(selectOrder);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
 
   const { isLoading, error, user, isLoggedIn } = useSelector(
     (state: RootState) => state.auth

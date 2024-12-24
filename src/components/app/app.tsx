@@ -15,10 +15,10 @@ import {
 } from '@pages';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { fetchUser } from '../../slices/authSlice';
-import { AppDispatch } from 'src/services/store';
+import { AppDispatch, useDispatch } from '../../services/store';
 import { TIngredient } from '@utils-types';
+import { ProtectedRoute } from '../protected-route';
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -40,7 +40,7 @@ const App: React.FC = () => {
     navigate(-1);
   };
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUser());
@@ -57,7 +57,11 @@ const App: React.FC = () => {
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/profile/orders' element={<ProfileOrders />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path='/profile/orders' element={<ProfileOrders />} />
+        </Route>
+
         <Route path='*' element={<NotFound404 />} />
 
         <Route path='/feed/:number' element={<OrderInfo />} />
@@ -85,14 +89,16 @@ const App: React.FC = () => {
                 </Modal>
               }
             />
-            <Route
-              path='/profile/orders/:number'
-              element={
-                <Modal title={'Детали заказа'} onClose={handleCloseModal}>
-                  <OrderInfo />
-                </Modal>
-              }
-            />
+            <Route element={<ProtectedRoute />}>
+              <Route
+                path='/profile/orders/:number'
+                element={
+                  <Modal title={'Детали заказа'} onClose={handleCloseModal}>
+                    <OrderInfo />
+                  </Modal>
+                }
+              />
+            </Route>
           </Routes>
         </>
       )}

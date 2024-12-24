@@ -2,10 +2,14 @@ import { forwardRef, useMemo } from 'react';
 import { TIngredientsCategoryProps } from './type';
 import { TIngredient } from '@utils-types';
 import { IngredientsCategoryUI } from '../ui/ingredients-category';
-import { useSelector } from 'react-redux';
+import {
+  AppDispatch,
+  AppState,
+  useDispatch,
+  useSelector
+} from '../../services/store';
 import { selectIngredients } from '../../slices/ingredientsSlice';
 import { RootState } from 'src/services/rootReducer';
-import { AppState } from 'src/services/store';
 
 export const IngredientsCategory = forwardRef<
   HTMLUListElement,
@@ -15,7 +19,7 @@ export const IngredientsCategory = forwardRef<
 
   //const ingredientsState = useSelector();
 
-  const constructorItems: any = useSelector<AppState>(
+  const constructorItems: any = useSelector(
     (state: RootState) => state.burgerConstructor
   );
 

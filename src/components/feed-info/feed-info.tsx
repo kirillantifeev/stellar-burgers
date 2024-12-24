@@ -2,8 +2,13 @@ import { FC, useEffect } from 'react';
 
 import { TOrder } from '@utils-types';
 import { FeedInfoUI } from '../ui/feed-info';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../../services/store';
+import {
+  AppDispatch,
+  AppState,
+  RootState,
+  useDispatch,
+  useSelector
+} from '../../services/store';
 import {
   getFeeds,
   selectFeeds,
@@ -22,7 +27,7 @@ export const FeedInfo: FC = () => {
   //const orders: TOrder[] = [];
   const feed = {};
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   const orders = useSelector(selectFeeds);
   const loading = useSelector(selectFeedsLoading);
   const error = useSelector(selectFeedsError);

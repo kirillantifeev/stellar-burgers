@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styles from './profile-menu.module.css';
 import { NavLink } from 'react-router-dom';
 import { ProfileMenuUIProps } from './type';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../../services/store';
 import { RootState } from '../../../services/rootReducer';
 
 export const ProfileMenuUI: FC<ProfileMenuUIProps> = ({
