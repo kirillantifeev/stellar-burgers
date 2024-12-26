@@ -22,11 +22,6 @@ export const Profile: FC = () => {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  // const user = {
-  //   name: '',
-  //   email: ''
-  // };
-
   const [formValue, setFormValue] = useState({
     name: '',
     email: '',
@@ -40,17 +35,6 @@ export const Profile: FC = () => {
       email: user?.email || ''
     }));
   }, [user]);
-
-  // useEffect(() => {
-  //   if (isLoggedIn === false) {
-  //   setFormValue((prevState) => ({
-  //     ...prevState,
-  //     name: '',
-  //     email: '',
-  //     password: ''
-  //   }));
-  // }
-  // }, [isLoggedIn]);
 
   const isFormChanged =
     formValue.name !== user?.name ||

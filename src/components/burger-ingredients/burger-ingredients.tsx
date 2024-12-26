@@ -24,10 +24,6 @@ export const BurgerIngredients: FC = () => {
   const loading = useSelector(selectIngredientsLoading);
   const error = useSelector(selectIngredientsError);
 
-  useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
-
   /** TODO: взять переменные из стора */
   const buns = ingredients.filter((ingredient) => {
     if (ingredient.type === 'bun') return ingredient;

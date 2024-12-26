@@ -38,23 +38,9 @@ export const OrderInfo: FC = () => {
     dispatch(getOrderByNumber(Number(number)));
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
-
   const orderData = order?.orders.find(
     (order) => order.number === Number(number)
   );
-
-  // const orderData = {
-  //   createdAt: '',
-  //   ingredients: [],
-  //   _id: '',
-  //   status: '',
-  //   name: '',
-  //   updatedAt: 'string',
-  //   number: 0
-  // };
 
   //const ingredients =
 

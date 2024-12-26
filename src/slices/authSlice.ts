@@ -66,7 +66,7 @@ export const logoutUser = createAsyncThunk('auth/logout', async () => {
 
 export const fetchUser = createAsyncThunk('auth/fetchUser', async () => {
   const res = await getUserApi();
-  console.log(res.user);
+  console.log('okssssssssss');
   return res.user;
 });
 

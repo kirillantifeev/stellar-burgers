@@ -19,28 +19,26 @@ import { fetchUser } from '../../slices/authSlice';
 import { AppDispatch, useDispatch } from '../../services/store';
 import { TIngredient } from '@utils-types';
 import { ProtectedRoute } from '../protected-route';
+import { getIngredients } from '../../slices/ingredientsSlice';
 
 const App: React.FC = () => {
   const location = useLocation();
   //const backgroundLocation = location.state?.backgroundLocation;
   const backgroundLocation = location.state?.background;
-  const [isOpenModal, setIsModalOpen] = useState(false);
-  const [selectedIngredient, setSelectedIngredient] =
-    useState<TIngredient | null>(null);
+
   const navigate = useNavigate();
 
-  const handleOpenModal = (ingredient: TIngredient) => {
-    setSelectedIngredient(ingredient);
-    setIsModalOpen(true);
-  };
+  const handleOpenModal = (ingredient: TIngredient) => {};
 
   const handleCloseModal = () => {
-    // setIsModalOpen(false);
-    // setSelectedIngredient(null);
     navigate(-1);
   };
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchUser());
@@ -56,16 +54,18 @@ const App: React.FC = () => {
         <Route path='/register' element={<Register />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/profile' element={<Profile />} />
 
         <Route element={<ProtectedRoute />}>
-          <Route path='/profile/orders' element={<ProfileOrders />} />
+          <Route path='/profile' element={<Profile />} />
         </Route>
+
+        <Route path='/profile/orders' element={<ProfileOrders />} />
 
         <Route path='*' element={<NotFound404 />} />
 
         <Route path='/feed/:number' element={<OrderInfo />} />
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
+
         <Route path='/profile/orders/:number' element={<OrderInfo />} />
       </Routes>
 
@@ -89,16 +89,15 @@ const App: React.FC = () => {
                 </Modal>
               }
             />
-            <Route element={<ProtectedRoute />}>
-              <Route
-                path='/profile/orders/:number'
-                element={
-                  <Modal title={'Детали заказа'} onClose={handleCloseModal}>
-                    <OrderInfo />
-                  </Modal>
-                }
-              />
-            </Route>
+
+            <Route
+              path='/profile/orders/:number'
+              element={
+                <Modal title={'Детали заказа'} onClose={handleCloseModal}>
+                  <OrderInfo />
+                </Modal>
+              }
+            />
           </Routes>
         </>
       )}
