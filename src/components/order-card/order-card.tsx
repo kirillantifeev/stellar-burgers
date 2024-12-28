@@ -27,10 +27,6 @@ export const OrderCard: FC<OrderCardProps> = memo(({ order }) => {
   const dispatch = useDispatch();
   const ingredients = useSelector(selectIngredients);
 
-  useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
-
   const orderInfo = useMemo(() => {
     if (!ingredients.length) return null;
 

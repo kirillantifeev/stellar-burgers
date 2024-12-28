@@ -18,21 +18,6 @@ export const ConstructorPage: FC = () => {
   const isIngredientsLoading = false;
   //const isIngredientsLoading = useSelector(selectIngredientsLoading);
 
-  // const dispatch = useDispatch<AppDispatch>();
-  // const ingredients = useSelector(selectIngredients);
-  // const loading = useSelector(selectIngredientsLoading);
-  // const error = useSelector(selectIngredientsError);
-
-  // useEffect(() => {
-  //   dispatch(getIngredients());
-  // }, [dispatch]);
-
-  // console.log(ingredients.map((ingredient) => {
-  //   if (ingredient.type === 'bun') {
-  //     return ingredient
-  //   }
-  // }));
-
   return (
     <>
       {isIngredientsLoading ? (

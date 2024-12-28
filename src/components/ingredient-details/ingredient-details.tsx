@@ -21,10 +21,6 @@ export const IngredientDetails: FC = () => {
   const ingredients = useSelector(selectIngredients);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
-
   const ingredientData = ingredients.find(
     (ingredient) => ingredient._id === id
   );

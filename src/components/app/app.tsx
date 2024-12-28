@@ -59,7 +59,9 @@ const App: React.FC = () => {
           <Route path='/profile' element={<Profile />} />
         </Route>
 
-        <Route path='/profile/orders' element={<ProfileOrders />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path='/profile/orders' element={<ProfileOrders />} />
+        </Route>
 
         <Route path='*' element={<NotFound404 />} />
 
