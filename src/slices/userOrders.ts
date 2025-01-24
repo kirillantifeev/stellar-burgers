@@ -1,9 +1,9 @@
-import { getFeedsApi, getOrdersApi, TFeedsResponse } from '@api';
+import { getFeedsApi, getOrdersApi, TFeedsResponse } from '../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 import { RootState } from 'src/services/store';
 
-interface OrdersState {
+export interface OrdersState {
   orders: TFeedsResponse;
   loading: boolean;
   error: string | null;
@@ -22,6 +22,7 @@ export const initialState: OrdersState = {
 
 export const getOrders = createAsyncThunk('orders/getOrders', async () => {
   const orders = await getOrdersApi();
+  console.log(orders);
   return orders;
 });
 

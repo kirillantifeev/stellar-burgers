@@ -7,12 +7,12 @@ import {
   TRegisterData,
   fetchWithRefresh,
   updateUserApi
-} from '@api';
+} from '../utils/burger-api';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { TUser } from '@utils-types';
 import { setCookie } from '../utils/cookie';
 
-interface AuthState {
+export interface AuthState {
   user: TUser | null;
   isLoggedIn: boolean;
   isLoading: boolean;
@@ -60,17 +60,17 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk('auth/logout', async () => {
   const res = await logoutApi();
-  console.log(res);
+  //console.log(res);
   return null;
 });
 
 export const fetchUser = createAsyncThunk('auth/fetchUser', async () => {
   const res = await getUserApi();
-  console.log('okssssssssss');
+  //console.log('okssssssssss');
   return res.user;
 });
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
@@ -126,9 +126,9 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
       })
-      .addCase(fetchUser.rejected, (state) => {
+      .addCase(fetchUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = 'Error fetching user';
+        state.error = action.error.message || 'Error logging out user';
       })
       .addCase(updateUser.pending, (state) => {
         state.isLoading = true;
@@ -138,9 +138,9 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
       })
-      .addCase(updateUser.rejected, (state) => {
+      .addCase(updateUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = 'Error update user';
+        state.error = action.error.message || 'Error logging out user';
       });
   }
 });
