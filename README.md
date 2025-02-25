@@ -4,7 +4,7 @@ Stellar Burgers — настоящая космическая бургерная
 
 [Макет](<https://www.figma.com/file/vIywAvqfkOIRWGOkfOnReY/React-Fullstack_-Проектные-задачи-(3-месяца)_external_link?type=design&node-id=0-1&mode=design>)
 
-## Запуск проекта:
+## Запуск и установка проекта:
 Установка зависимостей:
 ```
 npm install
