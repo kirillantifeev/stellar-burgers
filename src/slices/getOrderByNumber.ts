@@ -1,8 +1,12 @@
-import { getOrderByNumberApi, TNewOrderResponse, TOrderResponse } from '@api';
+import {
+  getOrderByNumberApi,
+  TNewOrderResponse,
+  TOrderResponse
+} from '../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'src/services/rootReducer';
 
-interface OrderState {
+export interface OrderState {
   order: TOrderResponse | null;
   isLoading: boolean;
   error: string | null;

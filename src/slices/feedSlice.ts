@@ -1,9 +1,9 @@
-import { getFeedsApi, TFeedsResponse } from '@api';
+import { getFeedsApi, TFeedsResponse } from '../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 import { RootState } from 'src/services/store';
 
-interface FeedsState {
+export interface FeedsState {
   orders: TFeedsResponse;
   loading: boolean;
   error: string | null;
@@ -22,6 +22,7 @@ export const initialState: FeedsState = {
 
 export const getFeeds = createAsyncThunk('feed/getFeeds', async () => {
   const feedOrder = await getFeedsApi();
+  //console.log(feedOrder)
   return feedOrder;
 });
 
@@ -51,3 +52,5 @@ export const selectFeedsLoading = (state: RootState) => state.feeds.loading;
 export const selectFeedsError = (state: RootState) => state.feeds.error;
 
 export default feedsSlice.reducer;
+
+//export const feedsSliceReducer = () => feedsSlice.reducer;

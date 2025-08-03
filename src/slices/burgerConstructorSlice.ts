@@ -3,7 +3,7 @@ import { TConstructorIngredient, TIngredient } from '@utils-types';
 import reducer from './ingredientsSlice';
 import { v4 as uuidv4 } from 'uuid';
 
-interface burgerConstructorState {
+export interface burgerConstructorState {
   bun: TIngredient | null;
   ingredients: TIngredient[];
 }

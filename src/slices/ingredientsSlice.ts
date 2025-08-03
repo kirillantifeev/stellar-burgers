@@ -1,9 +1,9 @@
-import { getIngredientsApi } from '@api';
+import { getIngredientsApi } from '../utils/burger-api';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { TIngredient } from '@utils-types';
 import { RootState } from 'src/services/store';
 
-interface IngredientsState {
+export interface IngredientsState {
   ingredients: TIngredient[];
   loading: boolean;
   error: string | null;
@@ -19,6 +19,7 @@ export const getIngredients = createAsyncThunk(
   'ingredients/getIngredients',
   async () => {
     const ingredients = await getIngredientsApi();
+    console.log(ingredients);
     return ingredients;
   }
 );
@@ -36,6 +37,7 @@ export const ingredientsSlice = createSlice({
       .addCase(getIngredients.fulfilled, (state, action) => {
         state.loading = false;
         state.ingredients = action.payload;
+        console.log(state.ingredients);
       })
       .addCase(getIngredients.rejected, (state, action) => {
         state.loading = false;
